@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" ng-app="todooo">
+<head>
+  <meta charset="utf-8">
+  <title>Todooo</title>
+  <link rel="stylesheet" href="styles/app.css"/>
+  <link href='http://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+  <h1 id="app-name">Todooo</h1>
+
+  <div ng-view></div>
+
+  <!-- minified -->
+  <!-- <script src="scripts/_build/todooo-all.js"></script> -->
+
+  <script src="scripts/lib/angular/1.2.4/angular.min.js"></script>
+  <script src="scripts/lib/angular/1.2.4/angular-route.min.js"></script>
+  
+  <!-- angular-mocks.js used for testing -->
+  <script src="scripts/lib/angular/1.2.4/angular-mocks.js"></script>
+  
+  <script src="scripts/app.js"></script>
+  <script src="scripts/config/config.js"></script>
+  <script src="scripts/config/routes.js"></script>
+
+  <!-- Services -->
+  <script src="scripts/services/noteService.js"></script>
+
+  <!-- Controllers -->
+  <script src="scripts/controllers/todoooController.js"></script>
+
+  <!-- Filters -->
+  <script src="scripts/filters/onlyUncheckedFilter.js"></script>
+
+  <!-- Directives -->
+  <script src="scripts/directives/smartInput.js"></script>
+  <script src="scripts/directives/expandable.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "todooo",
+  "version": "0.1.0",
+  "author": "Bruno Scopelliti",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-sass": "~0.5.1",
+    "grunt-karma": "~0.6.2",
+    "karma-junit-reporter": "~0.1.0",
+    "karma-html-reporter": "~0.1",
+    "karma-coverage": "0.1.2",
+    "grunt-protractor-runner": "~0.1.11"
+  }
+}

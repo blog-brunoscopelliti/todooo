@@ -1,0 +1,71 @@
+<!-- Form (register new notes) -->
+<section id="reg-new-entry">
+	<h2>Add a new memo:</h2>
+	<form name="reg" novalidate ng-submit="reg.entry.$valid && register()">
+		<smart-input data-validation="/^.{1,140}$/" data-required="true"></smart-input>
+		<div class="error" ng-show="reg.$dirty && reg.entry.$invalid">
+			<p ng-show="reg.entry.$error.required">The field is mandatory.</p>
+			<p ng-show="reg.entry.$error.pattern">The message should be at least one character long, and not longer than a tweet!</p>
+		</div>
+	</form>
+</section>
+<!-- Notes list -->
+<section id="entries-list" ng-switch on="entries.length > 0">
+	<ul ng-switch-when="true">
+		<li ng-repeat="i in entries | onlyUnchecked:hideCompleted">
+			<div class="entry-box">
+				<div class="todo">
+					<span class="id">{{$index+1}}</span>
+					<span class="check">
+						<img ng-src="images/{{ i.isChecked ? 'check' : 'not-check' }}.png" title="Mark as done" ng-click="update(i.id);"/>
+					</span>
+					<span class="note" title="View more"  ng-switch on="i.note.length < 60" expandable="">
+						<span ng-switch-when="true">{{i.note}}</span>
+						<span ng-switch-when="false">
+							<span class="start">{{i.note.substring(0, 56)}}<span class="dots"> ...</span><span class="end">{{i.note.substring(56)}}</span></span>
+						</span>
+					</span>
+				</div>
+				<div class="more">
+					<p>
+						<img src="images/clock.png"/>
+						<span class="created">Created: {{i.signedDate | date:'yyyy-MM-dd'}}</span>
+						<span class="completed">Completed: {{i.completedDate | date:'yyyy-MM-dd'}}</span>
+					</p>
+					<p>
+						<img src="images/trash.png"/>
+						<span class="del" ng-click="delete(i.id);">Delete</span>
+						<span> (you won't be able to restore this record)</span>
+					</p>
+					<img class="compact" src="images/close.png" title="Switch to compact mode" onclick="document.getElementsByClassName('expanded')[0].className='entry-box';"/>
+				</div>
+			</div>
+		</li>
+		<li id="ctrls">
+			<span class="cbox">
+				<input type="checkbox" name="set-filter" id="set-filter" ng-model="view" ng-click="hideCompleted = !hideCompleted"/>
+				<span class="cb"></span>
+			</span>
+			<label for="set-filter">Hide completed task.</label>
+		</li>
+	</ul>
+	<div id="entries-list-empty" ng-switch-default>
+		<img src="images/empty.png" alt="The list is empty."/>
+		<p>Your todooo list is empty. <b>Be Happy!</b></p>
+	</div>
+</section>
+<!-- Loading message -->
+<div id="loading" class="overlay" ng-class="{'visible': isBusy}">
+	<div class="loading-messages">
+			<h3>Loading...</h3>
+			<p>Please wait</p>
+	</div>
+</div>
+<!-- Loading message -->
+<div id="error" class="overlay" ng-class="{'visible': showError}">
+	<div class="error-messages">
+			<h3>Ops... this is embarassing...</h3>
+			<p>An error occured.</p>
+			<p class="action"><a ng-click="showError=false;">Close</a></p>
+	</div>
+</div>

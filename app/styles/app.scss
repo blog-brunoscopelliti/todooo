@@ -1,0 +1,280 @@
+@import "partials/_vars";
+
+$pageWidth: 520px;
+
+body {
+	font-family: Verdana;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	color: #000;
+	font-family: 'Lora', serif;
+	font-size: 96px;
+	font-weight: 100;
+	margin: 0 auto;
+	text-align: center;
+	text-transform: uppercase;
+	width: $pageWidth;
+}
+
+h2 {
+	font-family: 'Lora', serif;
+	font-size: 16px;
+	font-weight: 100;
+	line-height: 20px;
+	margin: 10px 0 5px;
+}
+
+section {
+	margin: 0 auto;
+	width: $pageWidth;
+}
+
+form {
+	.error {
+		color: #F00;
+		font-family: Verdana;
+		font-size: 11px;
+		font-weight: 100;
+		margin-top: -6px;
+	}
+}
+
+.smart-input-box {
+	border: 1px solid #CCC;
+	box-shadow: 0 0 4px 1px #CCC;
+	display: inline-block;
+	padding: 3px 0 0;
+	position: relative;
+	width: $pageWidth;
+	.smart-tip {
+		color: blue;
+		font-size: 13px;
+		font-weight: 100;
+		opacity: 0;
+		position: absolute;
+		top: 2px;
+		left: 2%;
+		text-shadow: 0 0 1px blue;
+		text-transform: lowercase;
+		transition: opacity .5s;
+		z-index: -1;
+	}
+	input {
+		border: 0;
+		display: block;
+		font-size: 18px;
+		font-weight: 100;
+		height: 30px;
+		margin: 0 auto;
+		outline: none;
+		padding-left: 1%;
+		transition: margin-top .25s;
+		width: 95%;
+	}
+	&.visible {
+		.smart-tip {
+			opacity: 1;
+			z-index: 1;
+		}
+		input {
+			margin-top: 10px;
+		}
+	}
+}
+
+#entries-list {
+	
+	font-family: 'Lora', serif;
+	margin: 60px auto 10px;
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		li {
+			margin: 15px 0;
+		}
+		li#ctrls {
+			border-top: 1px solid #CCC;
+			margin-top: 30px;
+			padding: 20px 10px 5px 50px;
+		}
+	}
+
+	.entry-box {
+		cursor: default;
+		margin: 0 15px;
+		position: relative;
+
+		.id,
+		.check img,
+		.note {
+			vertical-align: middle;
+		}
+		.id {
+			display: inline-block;
+			font-size: 36px;
+			font-weight: 100;
+			min-width: 40px;
+		}
+		.check {
+			cursor: pointer;
+			margin: 0 5px 0 10px;
+		}
+		.note {
+			display: inline-block;
+			font-size: 14px;
+			max-width: 420px;
+		}
+
+		.more, 
+		.end {
+			display: none;
+		}
+
+		&.expanded {
+
+			background: beige;
+			margin: 30px 0 30px -12px;
+			padding: 10px 24px 15px;
+			width: 100%; 
+
+			.more {
+				display: block;
+				font-size: 12px;
+				padding-left: 70px;
+				span,
+				img {
+					margin-left: 6px;
+					vertical-align: middle;
+				}
+				.del {
+					color: red;
+					cursor: pointer;
+					text-decoration: underline;
+				}
+				img.compact {
+					cursor: pointer;
+					opacity: .7;
+					position: absolute; 
+					top: 20px;
+					right: 20px;
+				}
+			}
+			.end {
+				display: inline;
+			}
+			.dots {
+				display: none;
+			}
+		}
+
+	}
+
+
+
+
+
+	.cbox {
+		cursor: pointer;
+		position: relative;
+		input {
+			height: 24px;
+			opacity: 0;
+			position: absolute;
+			top: -1px;
+			left: -4px;
+			width: 32px;
+			& + .cb {
+				background: url('../images/cbox.png') no-repeat 50%;
+				display: inline-block;
+				height: 24px;
+				vertical-align: middle;
+				width: 32px;
+			}
+			&:checked + .cb {
+				background-image: url('../images/cbox-checked.png');
+			}
+		}
+	}
+	.cbox + label {
+		cursor: pointer;
+		font-size: 13px;
+		vertical-align: middle;
+	}
+}
+
+#entries-list-empty {
+	color: #333;
+	font-family: 'Lora', serif;
+	font-size: 14px;
+	text-align: center;	
+}
+
+.overlay {
+	background: #DEDEDE;
+	border: 0;
+	display: none;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+	padding: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	transition: opacity .5s;
+	width: 100%;
+	z-index: 10;
+
+	&.visible {
+		display: block;
+		opacity: .9;
+	}
+
+	.loading-messages,
+	.error-messages {
+		color: #000;
+		margin: 25% auto 0;
+		text-shadow: 0 0 0 #000;
+		width: 200px;
+
+		h3, p {
+			font-family: 'Lora', serif;
+			font-size: 14px;
+			text-align: center;
+			line-height: 12px;
+		}
+		.action {
+			color: #000;
+			cursor: pointer;
+			text-decoration: underline;
+		}
+	}
+	.error-messages h3 {
+		color: #F00;
+	}
+}
+
+
+/* 404 route */
+h2.error404 {
+	font-family: 'Lora', serif;
+	font-size: 48px;
+	font-weight: 100;
+	margin: 50px 0 25px;
+	text-align: center;
+}
+p.error404 {
+	color: #333;
+	font-family: 'Lora', serif;
+	font-size: 14px;
+	text-align: center;
+	& a {
+		color: black;
+		text-decoration: underline;
+		text-shadow: 0 0 0 #000;
+	}
+}
